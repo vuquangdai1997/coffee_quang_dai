@@ -39,14 +39,15 @@ class AddToCart extends StatelessWidget {
           Expanded(
             child: SizedBox(
               height: 50,
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18)),
-                color: product.color,
+              child:TextButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(product.color),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18)),),
+                ),
                 onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context){
-                       return Gio_hang();
-                    }));
+                  Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return Gio_hang(product: product,);
+                  }));
                 },
                 child: Text(
                   " Thêm vào giỏ hàng".toUpperCase(),

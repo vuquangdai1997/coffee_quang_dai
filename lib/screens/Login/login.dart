@@ -50,6 +50,9 @@ class _LoginState extends State<Login> {
 
                     decoration: InputDecoration(
                         labelText: 'Tài Khoản',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                     ),
                     style: TextStyle(color: Colors.black, fontSize: 25),
                     controller: controlertaikhoan,
@@ -66,6 +69,9 @@ class _LoginState extends State<Login> {
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Mật Khẩu',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
                     style: TextStyle(color: Colors.black, fontSize: 25),
                     controller: contronlermatkhau,
@@ -77,38 +83,42 @@ class _LoginState extends State<Login> {
                     }
                 ),
               ),
-              Row(
-                children:<Widget> [
-                  Expanded(
-                    child:Container(
-                      margin: EdgeInsets.all(25),
-                      child: MaterialButton(
-                        child: Text('Đăng nhập', style: TextStyle(fontSize: 20.0),),
-                        color: Colors.red,
-                        textColor: Colors.white,
-                        onPressed: () {
-                             if(_login.taiKhoan =="KH1" && _login.matKhau =="KH1")
-                               {
-                                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                                   return HomeScreen();
-                                 }));
-                               }
-                             else
-                               {
-                                   Navigator.push(context, MaterialPageRoute(builder: (context){
-                                     return Manage_store();
-                                   }));
-                               }
-                        },
-                      ),
+              Padding(padding: EdgeInsets.only(top: 15)),
+                SizedBox(
+                  width: 380,
+                  height: 50,
+                  child:Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
                     ),
+                  child: MaterialButton(
+                    child: Text('Đăng nhập', style: TextStyle(fontSize: 20.0),),
+                    color: Colors.red,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
                   ),
+                    textColor: Colors.white,
+                    onPressed: () {
+                      if(_login.taiKhoan =="KH1" && _login.matKhau =="KH1")
+                      {
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return HomeScreen();
+                        }));
+                      }
+                      else
+                      {
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return Manage_store();
+                        }));
+                      }
+                    },
+                  ),
+                  )
+                )
                 ],
               )
-            ],
           ),
         ),
-      ),
     );
   }
 }
