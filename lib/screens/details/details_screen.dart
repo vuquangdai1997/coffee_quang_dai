@@ -21,13 +21,13 @@ class DetailsScreen extends StatelessWidget {
     return AppBar(
       backgroundColor: product.color,
       elevation: 0,
-      leading: IconButton(
-        icon: SvgPicture.asset(
-          'assets/icons/back.svg',
-          color: Colors.white,
-        ),
-        onPressed: () => Navigator.pop(context),
-      ),
+      // leading: IconButton(
+      //   icon: SvgPicture.asset(
+      //     'assets/icons/back.svg',
+      //     color: Colors.white,
+      //   ),
+      //   onPressed: () => Navigator.pop(context),
+      // ),
       actions: <Widget>[
         IconButton(
           icon: SvgPicture.asset("assets/icons/cart.svg"),

@@ -63,32 +63,15 @@ class _capNhapThongTinCaNhanState extends State<Khaithongtin> {
                     ),
                     Padding(padding: EdgeInsets.symmetric(
                         vertical: 10, horizontal: 10)),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Nhập Ngày Sinh',
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10)),
                     // TextField(
                     //   decoration: InputDecoration(
                     //     hintText: ' Giới tính',
                     //     border: OutlineInputBorder(),
                     //   ) ,
                     // ),
-                    SizedBox( height: 20, width: 500,),
-                    DropDownField(
-                      controller: goitinhselected,
-                      hintText: ' Giới tính',
-                      enabled:  true,
-                      items:Gioitinh
-                    ),
-                      Padding(padding: EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10)),
                     TextField(
                       decoration: InputDecoration(
-                        hintText: 'Tài Khoản',
+                        hintText: 'Địa chỉ',
                         border: OutlineInputBorder(),
                       ),
                     ),

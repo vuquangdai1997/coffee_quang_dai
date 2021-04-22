@@ -8,7 +8,7 @@ class thayDoiMatKhau extends StatefulWidget {
 }
 
 class _thayDoiMatKhauState extends State<thayDoiMatKhau> {
-  ListLogin _listLogin ;
+  //ListLogin _listLogin ;
 
   @override
   Widget build(BuildContext context) {

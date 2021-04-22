@@ -10,7 +10,6 @@ class Bodyperson extends StatefulWidget {
 }
 class _BodypersonState extends State<Bodyperson> {
   Person person;
-  ListLogin login;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

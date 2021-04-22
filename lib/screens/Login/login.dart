@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-
 import '../../constants.dart';
 import '../home/home_screen.dart';
 import 'ListLogin.dart';
-import 'package:CoffeeQuangDai/screens/home/components/person/informationperson.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:CoffeeQuangDai/manage_store/manage_storehome.dart';
-
+//import 'package:CoffeeQuangDai/screens/home/components/person/informationperson.dart';
+//import 'package:CoffeeQuangDai/manage_store/manage_storehome.dart';
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
 class _LoginState extends State<Login> {
-  final controlertaikhoan= TextEditingController();
-  final contronlermatkhau = TextEditingController();
-  ListLogin _login = ListLogin(taiKhoan: " ", matKhau:" ");
+  var matkhau;
+  var taikhoan;
+  //ListLogin _login = ListLogin(taikhoan: " ", matKhau:" ");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,10 +57,10 @@ class _LoginState extends State<Login> {
                         ),
                     ),
                     style: TextStyle(color: Colors.black, fontSize: 25),
-                    controller: controlertaikhoan,
+                //    controller: controlertaikhoan,
                     onChanged: (text){
                       setState(() {
-                        _login.taiKhoan = text;
+                       taikhoan = text;
                       });
                     }
                 ),
@@ -74,11 +76,10 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     style: TextStyle(color: Colors.black, fontSize: 25),
-                    controller: contronlermatkhau,
-
+                  // controller: contronlermatkhau,
                     onChanged: (text){
                       setState(() {
-                        _login.matKhau = text;
+                        matkhau = text;
                       });
                     }
                 ),
@@ -99,19 +100,37 @@ class _LoginState extends State<Login> {
                   ),
                     textColor: Colors.white,
                     onPressed: () {
-                      if(_login.taiKhoan =="KH1" && _login.matKhau =="KH1")
-                      {
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return HomeScreen();
-                        }));
+                   setState(() {
+                      String myUrl = "http://localhost:8080/Logkh";
+                      http.post(myUrl,
+                      body: {
+                      "makh": taikhoan,
+                      "matkhau": matkhau,
                       }
-                      else
-                      {
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                          return Manage_store();
-                        }));
+
+                      ).then((response) {
+                      if(response.statusCode==200){
+                      Map<String, dynamic> maprse = json.decode(response.body);
+                      if(maprse["access"]==1) {
+                          print("dung");
+                          Navigator.of(context).push(
+                          new MaterialPageRoute(
+                          builder: (BuildContext context) => new HomeScreen(),
+                          ));
+
                       }
-                    },
+                      //thongbao = "Bạn nhập sai tài khoản / mật khẩu";
+                      }else{
+                        Navigator.of(context).push(
+                            new MaterialPageRoute(
+                              builder: (BuildContext context) => new Manage_store(),
+                            ));
+                      //thongbao = "Bạn nhập sai tài khoản / mật khẩu";
+                      }
+                      }
+                      );
+                      });
+                      },
                   ),
                   )
                 )
